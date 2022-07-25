@@ -1,3 +1,15 @@
 set number
 set numberwidth=4
+set shiftwidth=4
+set autoindent
+set expandtab
+set scrolloff=5
+set nowrap
+set ignorecase
+set smartcase
+set showmode
+set hlsearch
+set incsearch
+set title
+syntax on
 
