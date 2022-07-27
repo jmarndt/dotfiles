@@ -11,12 +11,10 @@ set showmode
 set hlsearch
 set incsearch
 set title
-"set paste
 set laststatus=2
 syntax on
 colorscheme murphy
 
-" experimental status bar configs
 let g:currentmode={
        \ 'n'  : 'NORMAL ',
        \ 'v'  : 'VISUAL ',
@@ -33,5 +31,4 @@ set statusline+=\ %{toupper(g:currentmode[mode()])} "vim mode
 set statusline+=%F                                  "file path
 set statusline+=%{&modified?'[+]':''}               "modified flag
 set statusline+=%=\ %l/%L                           "line number/total
-
 

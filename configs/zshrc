@@ -106,4 +106,5 @@ alias cs="xclip -selection clipboard"
 alias vs="xclip -o -selection clipboard"
 alias cp="cp -iv"
 alias mv="mv -iv"
+alias rm="rm -iv"
 
