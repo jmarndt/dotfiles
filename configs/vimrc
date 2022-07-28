@@ -5,13 +5,15 @@ set autoindent
 set expandtab
 set scrolloff=5
 set nowrap
-set ignorecase
 set smartcase
 set showmode
+set ignorecase
 set hlsearch
 set incsearch
 set title
 set laststatus=2
+set viminfo+=n~/.vim/.viminfo
+
 syntax on
 colorscheme murphy
 
