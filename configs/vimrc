@@ -1,22 +1,40 @@
-set number
-set numberwidth=4
-set shiftwidth=4
-set autoindent
-set expandtab
-set scrolloff=5
-set nowrap
-set smartcase
-set showmode
-set ignorecase
-set hlsearch
-set incsearch
+" Use Vim settings instead of Vi
+set nocompatible
+
+" General settings
+syntax on
+filetype on
+filetype plugin on
+filetype indent on
+colorscheme murphy
+set scrolloff=999
 set title
 set laststatus=2
 set viminfo+=n~/.vim/.viminfo
+set autoread
+set visualbell
 
-syntax on
-colorscheme murphy
+" Gutter settings
+set number
+set numberwidth=5
 
+" Line formatting
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+set nowrap
+
+" Search settings
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+" Status bar settings
 let g:currentmode={
        \ 'n'  : 'NORMAL ',
        \ 'v'  : 'VISUAL ',
@@ -27,7 +45,6 @@ let g:currentmode={
        \ 'Rv' : 'V·Replace ',
        \ 'c'  : 'Command ',
        \}
-
 set statusline=
 set statusline+=\ %{toupper(g:currentmode[mode()])} "vim mode
 set statusline+=%F                                  "file path
