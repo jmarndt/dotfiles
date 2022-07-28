@@ -7,22 +7,56 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+ 
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 function mkbak() {
   cp $1 $1.bak
 }
 
-alias c="xclip"
-alias v="xclip -o"
-alias cs="xclip -selection clipboard"
-alias vs="xclip -o -selection clipboard"
-alias cp="cp -iv"
-alias mv="mv -iv"
+function take() {
+  mkdir -p $1 && cd $1
+}
+
+# program overrides
 alias src="source ~/.zshrc && echo \"~/.zshrc reloaded\""
 alias editrc="vim ~/.zshrc"
 alias edt="editrc"
 alias dotfiles="cd ~/.dotfiles"
-alias dotfile="dotfiles"
-alias v="vim"
+alias .df="dotfiles"
 alias clr="clear"
 alias sys="systemctl"
+alias diff='diff --color'
+alias c="xclip"
+alias v="xclip -o"
+alias cs="xclip -selection clipboard"
+alias vs="xclip -o -selection clipboard"
+
+# filesystem aliases
+alias ...=../..
+alias ....=../../..
+alias .....=../../../..
+alias ......=../../../../..
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias l='ls'
+alias ls='ls -lah --color'
+alias md='mkdir -p'
+
+# git aliases
+alias g=git
+alias ga='git add'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gc='git commit -v'
+alias 'gc!'='git commit -v --amend'
+alias gco='git checkout'
+alias gga='git gui citool --amend'
+alias glog='git log --oneline --decorate --graph'
+alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
+alias gpf='git push --force-with-lease'
+alias gpu='git push upstream'
+alias grbi='git rebase -i'
+alias grbm='git rebase $(git_main_branch)'
+alias gst='git status'
+alias gss='git status -s'
