@@ -6,13 +6,13 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
-colorscheme murphy
+colorscheme slate
 set scrolloff=999
 set title
 set laststatus=2
 set viminfo+=n~/.vim/.viminfo
 set autoread
-set visualbell
+set wildmenu
 
 " Gutter settings
 set number
@@ -50,4 +50,3 @@ set statusline+=\ %{toupper(g:currentmode[mode()])} "vim mode
 set statusline+=%F                                  "file path
 set statusline+=%{&modified?'[+]':''}               "modified flag
 set statusline+=%=\ %l/%L                           "line number/total
-
