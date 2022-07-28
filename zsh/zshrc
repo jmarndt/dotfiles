@@ -8,7 +8,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-function mkbak () {
+function mkbak() {
   cp $1 $1.bak
 }
 
