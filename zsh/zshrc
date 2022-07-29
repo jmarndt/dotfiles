@@ -12,16 +12,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#function git_branch_name()
-#{
-#  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
-#  if [[ $branch == "" ]];
-#  then
-#    :
-#  else
-#    echo $branch
-#  fi
-#}
 
 autoload -U colors && colors
 setopt prompt_subst
@@ -48,11 +38,11 @@ alias vs="xclip -o -selection clipboard"
 #####################################################
 # Filesystem related 
 #####################################################
-function mkbak() {
+mkbak() {
   cp $1 $1.bak
 }
 
-function take() {
+take() {
   mkdir -p $1 && cd $1
 }
 
@@ -70,22 +60,34 @@ alias mkdir='mkdir -p'
 #####################################################
 # Git related 
 #####################################################
+#function git_branch_name()
+#{
+#  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+#  if [[ $branch == "" ]];
+#  then
+#    :
+#  else
+#    echo $branch
+#  fi
+#}
 ggu () {
 	[[ "$#" != 1 ]] && local b="$(git_current_branch)" 
 	git pull --rebase origin "${b:=$1}"
 }
 
-# alias ga='git add'
-# alias gaa='git add --all'
-# alias gb='git branch'
-# alias gc='git commit -v'
-# alias 'gc!'='git commit -v --amend'
-# alias gco='git checkout'
-# alias gga='git gui citool --amend'
-# alias glog='git log --oneline --decorate --graph'
-# alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
-# alias gpf='git push --force-with-lease'
-# alias grbi='git rebase -i'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gc='git commit -v'
+alias 'gc!'='git commit -v --amend'
+# alias gcm='git checkout $(git_main_branch)'
+alias gco='git checkout'
+alias glog='git log --oneline --decorate --graph'
+alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
+alias gpf='git push --force-with-lease'
+alias grbi='git rebase -i'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbi='git rebase -i'
 # alias grbm='git rebase $(git_main_branch)'
 alias gpu='git push -u origin HEAD'
 alias gst='git status'
