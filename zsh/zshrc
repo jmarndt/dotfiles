@@ -31,7 +31,7 @@ autoload -U colors && colors
 setopt prompt_subst
 prompt="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-# program overrides
+# System related
 alias src="source ~/.zshrc && echo \"~/.zshrc reloaded\""
 alias editrc="vim ~/.zshrc"
 alias edt="editrc"
@@ -45,7 +45,7 @@ alias v="xclip -o"
 alias cs="xclip -selection clipboard"
 alias vs="xclip -o -selection clipboard"
 
-# filesystem aliases
+# Filesystem related 
 alias ...=../..
 alias ....=../../..
 alias .....=../../../..
@@ -54,21 +54,26 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias l='ls'
 alias ls='ls -lah --color'
-alias md='mkdir -p'
+alias mkdir='mkdir -p'
 
-# git aliases
-alias g=git
-alias ga='git add'
-alias gaa='git add --all'
-alias gb='git branch'
-alias gc='git commit -v'
-alias 'gc!'='git commit -v --amend'
-alias gco='git checkout'
-alias gga='git gui citool --amend'
-alias glog='git log --oneline --decorate --graph'
-alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
-alias gpf='git push --force-with-lease'
-alias gpu='git push upstream'
-alias grbi='git rebase -i'
-alias grbm='git rebase $(git_main_branch)'
+# Git related 
+ggu () {
+	[[ "$#" != 1 ]] && local b="$(git_current_branch)" 
+	git pull --rebase origin "${b:=$1}"
+}
+
+# alias ga='git add'
+# alias gaa='git add --all'
+# alias gb='git branch'
+# alias gc='git commit -v'
+# alias 'gc!'='git commit -v --amend'
+# alias gco='git checkout'
+# alias gga='git gui citool --amend'
+# alias glog='git log --oneline --decorate --graph'
+# alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
+# alias gpf='git push --force-with-lease'
+# alias gpu='git push -u origin HEAD'
+# alias grbi='git rebase -i'
+# alias grbm='git rebase $(git_main_branch)'
 alias gst='git status'
+alias gsts='echo $(git stash show --name-status)'
