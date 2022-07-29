@@ -1,5 +1,9 @@
 [user]
-	email = jmarndt@users.noreply.github.com
-	name = Joe Arndt
+  email = jmarndt@users.noreply.github.com
+  name = Joe Arndt
+
+[includeIf "gitdir:~/work/"]
+  path = ~/work/.gitconfig
+
 [core]
-	editor = \"vim\"
+  editor = \"vim\"
