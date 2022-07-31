@@ -41,7 +41,7 @@ ggu () {
 }
 
 git_current_branch () {
-  return $vcs_info_msg_0_
+  git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/\1/p'
 }
 
 
