@@ -40,7 +40,7 @@ autoload -Uz vcs_info
 setopt prompt_subst
 
 precmd() { vcs_info }
-zstyle ':vcs_info:*' formats '%{%F{green}%} %u%c %b %{%f%}'
+zstyle ':vcs_info:*' formats '%{%F{green}%} %u%c %B(B)%b%{%f%}'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '%{%f%} %{%F{red}%}'
 zstyle ':vcs_info:*' unstagedstr '%{%f%} %{%F{red}%}'
