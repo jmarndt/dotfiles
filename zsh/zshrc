@@ -28,19 +28,25 @@ RPROMPT='${vcs_info_msg_0_}'
 # Custom functions
 ################################################################################
 mkbak() {
-  cp $1 $1.bak
+  filename=$1
+  cp $filename ${filename}.bak.$(date +%m%d%Y-%H%M%S)
+}
+
+rsbak() {
+  filename=$1
+  mv $filename ${filename%%.bak*}
 }
 
 take() {
   mkdir -p $1 && cd $1
 }
 
-ggu () {
+ggu() {
   [[ "$#" != 1 ]] && local b=$(git_current_branch)
 	git pull --rebase origin "${b:=$1}"
 }
 
-git_current_branch () {
+git_current_branch() {
   git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/\1/p'
 }
 
