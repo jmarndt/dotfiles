@@ -1,5 +1,5 @@
 ################################################################################
-# System and prompt
+# System 
 ################################################################################
 export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
 export LESSHISTFILE=$HOME/.cache/.lesshst
@@ -10,6 +10,12 @@ export NVM_DIR="$HOME/.nvm"
 
 bindkey -v
 autoload -U colors && colors
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+################################################################################
+# Prompt 
+################################################################################
 autoload -U promptinit
 autoload -Uz vcs_info
 setopt prompt_subst
