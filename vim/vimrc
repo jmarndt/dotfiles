@@ -49,4 +49,4 @@ set statusline=
 set statusline+=\ %{toupper(g:currentmode[mode()])} "vim mode
 set statusline+=%F                                  "file path
 set statusline+=%{&modified?'[+]':''}               "modified flag
-set statusline+=%=\ %l/%L                           "line number/total
+set statusline+=%=\ %l/%L\,\ %c                     "line num/total, column num
