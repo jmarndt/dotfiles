@@ -35,12 +35,18 @@ export NVM_DIR="$HOME/.nvm"
 
 bindkey -v
 autoload -U colors && colors
+autoload -U promptinit
 autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-zstyle ':vcs_info:git:*' formats '%b'
 setopt prompt_subst
-prompt="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
+precmd() { vcs_info }
+zstyle ':vcs_info:*' formats '%u%c %b %{%f%}'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr '%{%F{red}%}'
+zstyle ':vcs_info:*' unstagedstr '%{%F{red}%}'
+
+PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b '
+RPROMPT='${vcs_info_msg_0_}'
 
 
 #####################################################
@@ -102,10 +108,11 @@ alias c="xclip"
 alias v="xclip -o"
 alias cs="xclip -selection clipboard"
 alias vs="xclip -o -selection clipboard"
-alias ...=../..
-alias ....=../../..
-alias .....=../../../..
-alias ......=../../../../..
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias l='ls'
