@@ -1,9 +1,8 @@
 ################################################################################
 # System 
 ################################################################################
-export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
-export LESSHISTFILE=$HOME/.cache/.lesshst
-export HISTFILE=$HOME/.cache/.zsh_history
+export LESSHISTFILE=$HOME/.lesshst
+export HISTFILE=$HOME/.zsh_history
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -12,6 +11,8 @@ bindkey -v
 autoload -U colors && colors
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+setopt nobeep autocd
+
 
 ################################################################################
 # Prompt 
@@ -26,7 +27,15 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '%{%f%}%{%F{red}%}'
 zstyle ':vcs_info:*' unstagedstr '%{%f%}%{%F{red}%}'
 
-PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b '
+#PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b '
+PROMPT='%B'
+PROMPT+='%{$fg[red]%}['
+PROMPT+='%{$fg[yellow]%}%n'
+PROMPT+='%{$fg[green]%}@'
+PROMPT+='%{$fg[blue]%}%M '
+PROMPT+='%{$fg[magenta]%}%~'
+PROMPT+='%{$fg[red]%}]'
+PROMPT+='%{$reset_color%}$%b '
 RPROMPT='${vcs_info_msg_0_}'
 
 
@@ -84,11 +93,6 @@ alias c="xclip"
 alias v="xclip -o"
 alias cs="xclip -selection clipboard"
 alias vs="xclip -o -selection clipboard"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias l='ls'
