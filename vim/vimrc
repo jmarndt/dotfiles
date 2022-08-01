@@ -106,6 +106,6 @@ function! StatuslineMode()
   endif
 endfunction
 
-hi User1 ctermbg=black ctermfg=lightgray guibg=black guifg=lightgray
-hi User2 ctermbg=black ctermfg=red guibg=black guifg=red
+hi User1 cterm=bold ctermbg=black ctermfg=lightgray guibg=black guifg=lightgray
+hi User2 cterm=bold ctermbg=black ctermfg=red guibg=black guifg=red
 
