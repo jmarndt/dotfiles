@@ -89,7 +89,6 @@ alias dotfiles="cd ~/.dotfiles"
 alias .df="dotfiles"
 alias clr="clear"
 alias sys="systemctl"
-alias diff='diff --color'
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias l='ls'
