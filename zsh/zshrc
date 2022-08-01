@@ -82,6 +82,7 @@ git_main_branch() {
 # Aliases 
 ################################################################################
 alias v="vim"
+alias vimrc="vim ~/.vimrc"
 alias src="source ~/.zshrc && echo \"~/.zshrc reloaded\""
 alias editrc="vim ~/.zshrc"
 alias edt="editrc"
