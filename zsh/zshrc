@@ -81,6 +81,7 @@ git_main_branch() {
 ################################################################################
 # Aliases 
 ################################################################################
+alias v="vim"
 alias src="source ~/.zshrc && echo \"~/.zshrc reloaded\""
 alias editrc="vim ~/.zshrc"
 alias edt="editrc"
@@ -89,10 +90,6 @@ alias .df="dotfiles"
 alias clr="clear"
 alias sys="systemctl"
 alias diff='diff --color'
-alias c="xclip"
-alias v="xclip -o"
-alias cs="xclip -selection clipboard"
-alias vs="xclip -o -selection clipboard"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias l='ls'
