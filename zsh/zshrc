@@ -112,3 +112,4 @@ alias grbm='git rebase $(git_main_branch)'
 alias gpu='git push -u origin HEAD'
 alias gst='git status'
 alias gsts='echo $(git stash show --name-status)'
+alias ip="echo $(curl -s https://api.ipify.org)"
