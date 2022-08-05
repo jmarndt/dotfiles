@@ -13,9 +13,13 @@ set scrolloff=999
 set title
 set autoread
 set wildmenu
+set wildmode=longest,list,full
+set splitright
+set splitbelow
 
 " Gutter settings
 set number
+set relativenumber
 set numberwidth=5
 
 " Line formatting
@@ -26,7 +30,6 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
-set nowrap
 
 " Search settings
 set ignorecase
