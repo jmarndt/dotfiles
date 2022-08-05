@@ -1,6 +1,7 @@
 ################################################################################
 # System 
 ################################################################################
+source $HOME/.df
 export LESSHISTFILE=$HOME/.lesshst
 export HISTFILE=$HOME/.zsh_history
 export NVM_DIR="$HOME/.nvm"
@@ -84,10 +85,8 @@ git_main_branch() {
 alias v="vim"
 alias vimrc="vim ~/.vimrc"
 alias src="source ~/.zshrc && echo \"~/.zshrc reloaded\""
-alias editrc="vim ~/.zshrc"
-alias edt="editrc"
-alias dotfiles="cd ~/.dotfiles"
-alias .df="dotfiles"
+alias edt="vim ~/.zshrc"
+alias .df="cd $DOTFILES_DIR"
 alias clr="clear"
 alias sys="systemctl"
 alias cp="cp -iv"

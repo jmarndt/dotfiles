@@ -1,45 +1,39 @@
 #!/bin/sh
 
-# get dotfile repo directory
+# Set variables
 DOTFILES_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-BACKUP_DIR=$HOME/.backup_dotfiles
-[ ! -d "$BACKUP_DIR" ] && mkdir $BACKUP_DIR
+DF_DEST=$HOME/.df
+SHELLRC_SOURCE=$DOTFILES_DIR/zsh/zshrc
+SHELLRC_DEST=$HOME/.zshrc
+VIMRC_SOURCE=$DOTFILES_DIR/vim/vimrc
+VIMRC_DEST=$HOME/.vimrc
+TMUX_SOURCE=$DOTFILES_DIR/tmux/tmux.conf
+TMUX_DEST=$HOME/.tmux.conf
+GIT_SOURCE=$DOTFILES_DIR/git/gitconfig
+GIT_DEST=$HOME/.gitconfig
 
+# Shell RC 
+[ -L "$SHELLRC_DEST" ] && rm $SHELLRC_DEST
+[ -f "$SHELLRC_DEST" ] && mv $SHELLRC_DEST $SHELLRC_DEST.bak.$(date +%m%d%Y-%H%M%S)
+ln -s $SHELLRC_SOURCE $SHELLRC_DEST
 
-# .zshrc
-ZSHRC_FILE=$HOME/.zshrc
-[ -L "$ZSHRC_FILE" ] && rm $ZSHRC_FILE
-[ -f "$ZSHRC_FILE" ] && mv $ZSHRC_FILE $BACKUP_DIR/.zshrc.bak.$(date +%m%d%Y-%H%M%S)
-ln -s $DOTFILES_DIR/zsh/zshrc $ZSHRC_FILE
+# Vim RC
+[ -L "$VIMRC_DEST" ] && rm $VIMRC_DEST
+[ -f "$VIMRC_DEST" ] && mv $VIMRC_DEST $VIMRC_DEST.bak.$(date +%m%d%Y-%H%M%S)
+ln -s $VIMRC_SOURCE $VIMRC_DEST
 
+# Tmux Conf
+[ -L "$TMUX_DEST" ] && rm $TMUX_DEST
+[ -f "$TMUX_DEST" ] && mv $TMUX_DEST $TMUX_DEST.bak.$(date +%m%d%Y-%H%M%S)
+ln -s $TMUX_SOURCE $TMUX_DEST
 
-# .vimrc
-VIMRC_FILE=$HOME/.vimrc
-[ -L "$VIMRC_FILE" ] && rm $VIMRC_FILE
-[ -f "$VIMRC_FILE" ] && mv $VIMRC_FILE $BACKUP_DIR/.vimrc.bak.$(date +%m%d%Y-%H%M%S)
-ln -s $DOTFILES_DIR/vim/vimrc $VIMRC_FILE
+# Git Config
+[ -L "$GIT_DEST" ] && rm $GIT_DEST
+[ -f "$GIT_DEST" ] && mv $GIT_DEST $GIT_DEST.bak.$(date +%m%d%Y-%H%M%S)
+ln -s $GIT_SOURCE $GIT_DEST
 
-
-# .tmux.conf
-TMUX_FILE=$HOME/.tmux.conf
-[ -L "$TMUX_FILE" ] && rm $TMUX_FILE
-[ -f "$TMUX_FILE" ] && mv $TMUX_FILE $BACKUP_DIR/.tmux.conf.bak.$(date +%m%d%Y-%H%M%S)
-ln -s $DOTFILES_DIR/tmux/tmux.conf $TMUX_FILE
-
-
-# .gitconfig
-GIT_FILE=$HOME/.gitconfig
-[ -L "$GIT_FILE" ] && rm $GIT_FILE
-[ -f "$GIT_FILE" ] && mv $GIT_FILE $BACKUP_DIR/.gitconfig.bak.$(date +%m%d%Y-%H%M%S)
-ln -s $DOTFILES_DIR/git/gitconfig $GIT_FILE
-
+# Update dotfiles location
+echo "export DOTFILES_DIR=\"$DOTFILES_DIR\"" > $DF_DEST
 
 # finish 
-COMPLETE_MSG="dotfiles installed! don't forget to source your rc files!"
-if [ ! "$(ls -A $BACKUP_DIR)" ]; then
-  rm -rf $BACKUP_DIR
-  echo $COMPLETE_MSG
-else
-  echo "existing dotfiles were found. backups were made to $BACKUP_DIR"
-  echo $COMPLETE_MSG
-fi
+echo "dotfiles installed! don't forget to source your rc files!"
