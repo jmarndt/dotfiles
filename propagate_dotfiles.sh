@@ -35,5 +35,5 @@ ln -s $GIT_SOURCE $GIT_DEST
 # Update dotfiles location
 echo "export DOTFILES_DIR=\"$DOTFILES_DIR\"" > $DF_DEST
 
-# finish 
+# Finish
 echo "dotfiles installed! don't forget to source your rc files!"
