@@ -84,7 +84,7 @@ git_main_branch() {
 ################################################################################
 alias v="vim"
 alias vimrc="vim ~/.vimrc"
-alias src="source ~/.zshrc && echo \"~/.zshrc reloaded\""
+alias src="source ~/.zshrc"
 alias edt="vim ~/.zshrc"
 alias .df="cd $DOTFILES_DIR"
 alias clr="clear"
