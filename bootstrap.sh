@@ -74,6 +74,7 @@ bootstrap() {
     fi
     printf "\n$MSG_BLOCK""Linking dotfiles...\n"
     /bin/bash $DOTFILES_DIR_PATH/dotfiles.sh
+    printf "\n$MSG_BLOCK""Cleaning up temp files...\n"
     rm ./Brewfile.bootstrap
     rm ./Brewfile.bootstrap.lock.json
 
