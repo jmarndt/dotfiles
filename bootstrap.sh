@@ -57,7 +57,6 @@ bootstrap() {
     fi
     curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/Brewfile --output ./Brewfile.bootstrap
     brew bundle install --file ./Brewfile.bootstrap
-    rm ./Brewfile.bootstrap
     printf "\n$MSG_BLOCK""Installing NVM...\n"
     if [ ! -d $NVM_DIR_PATH ]; then
         mkdir $NVM_DIR_PATH
@@ -75,6 +74,8 @@ bootstrap() {
     fi
     printf "\n$MSG_BLOCK""Linking dotfiles...\n"
     /bin/bash $DOTFILES_DIR_PATH/dotfiles.sh
+    rm ./Brewfile.bootstrap
+    rm ./Brewfile.bootstrap.lock.json
 
     printf "\n$RESET$BOLD$GREEN$MSG_BLOCK$MSG_END$MSG_BLOCK$RESET"
 }

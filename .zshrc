@@ -68,7 +68,7 @@ git_main_branch() {
 
 alias src='source ~/.zshrc'
 alias edt='vim ~/.zshrc'
-alias clr='printf \33c\e[3J'
+alias clr='printf "\33c\e[3J"'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias l='ls'
