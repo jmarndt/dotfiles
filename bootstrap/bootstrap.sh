@@ -10,10 +10,10 @@ if [ "$#" != "1" ]; then
 fi
 
 if echo "${VALID_ARGS[@]}" | grep -qw "$1"; then
-    # curl $BOOTSTRAP_FUNCS_URL --output ./$BOOTSTRAP_FUNCS_FILE
+    curl $BOOTSTRAP_FUNCS_URL --output ./$BOOTSTRAP_FUNCS_FILE
     source $BOOTSTRAP_FUNCS_FILE
     bootstrap $1
-    # rm ./$BOOTSTRAP_FUNCS_FILE
+    rm ./$BOOTSTRAP_FUNCS_FILE
 else
     echo -e "$USAGE\n"
     exit 1

@@ -3,10 +3,10 @@ To bootstrap a new system run one of the following.
 
 MacOS:
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh mac)"
+curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh | bash -s -- mac
 ```
 
 Debian based:
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh deb)"
+curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh | bash -s -- deb
 ```
