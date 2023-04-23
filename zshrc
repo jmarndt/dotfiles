@@ -1,9 +1,7 @@
+export DOTFILES_DIR=$HOME/dotfiles
 export LESSHISTFILE=$HOME/.lesshst
 export HISTFILE=$HOME/.zsh_history
 export PATH="/usr/local/opt/dotnet@6/bin:/usr/local/sbin:$PATH"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 bindkey -v
 autoload -U colors && colors

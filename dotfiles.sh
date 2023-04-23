@@ -1,17 +1,17 @@
 #!/bin/bash
-DOTFILES_DIR=~/dotfiles
-SHELLRC=zshrc
+DOTFILES_DIR=$HOME/dotfiles
 VIMRC=vimrc
 GIT_CONF=gitconfig
+ZSHRC=zshrc
+SOURCE="source $DOTFILES_DIR/$ZSHRC"
 
-[ -L ~/.$SHELLRC ] && rm ~/.$SHELLRC
-[ -f ~/.$SHELLRC ] && rm ~/.$SHELLRC
-ln -s $DOTFILES_DIR/$SHELLRC ~/.$SHELLRC
+[ -L $HOME/.$VIMRC ] && rm $HOME/.$VIMRC
+[ -f $HOME/.$VIMRC ] && rm $HOME/.$VIMRC
+ln -s $DOTFILES_DIR/$VIMRC $HOME/.$VIMRC
 
-[ -L ~/.$VIMRC ] && rm ~/.$VIMRC
-[ -f ~/.$VIMRC ] && rm ~/.$VIMRC
-ln -s $DOTFILES_DIR/$VIMRC ~/.$VIMRC
+[ -L $HOME/.$GIT_CONF ] && rm $HOME/.$GIT_CONF
+[ -f $HOME/.$GIT_CONF ] && rm $HOME/.$GIT_CONF
+ln -s $DOTFILES_DIR/$GIT_CONF $HOME/.$GIT_CONF
 
-[ -L ~/.$GIT_CONF ] && rm ~/.$GIT_CONF
-[ -f ~/.$GIT_CONF ] && rm ~/.$GIT_CONF
-ln -s $DOTFILES_DIR/$GIT_CONF ~/.$GIT_CONF
+[ -f $HOME/$ZSHRC ] && grep -v "$SOURCE" $HOME/.$ZSHRC > temp && mv temp $HOME/.$ZSHRC
+echo $SOURCE >> $HOME/.$ZSHRC
