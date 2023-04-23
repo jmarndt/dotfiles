@@ -115,6 +115,7 @@ bootstrap_mac() {
 }
 
 bootstrap_deb() {
+    echo "Bootstrapping deb..."
     # TODO
 }
 
