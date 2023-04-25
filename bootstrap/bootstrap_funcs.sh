@@ -98,6 +98,8 @@ install_dev_tools() {
         [ -s "$NVM_DIR_PATH/nvm.sh" ] && \. "$NVM_DIR_PATH/nvm.sh"
         nvm install --lts
         npm install -g @angular/cli
+        npm install -g typescript
+        npm install -g ts-node
     fi
 }
 
