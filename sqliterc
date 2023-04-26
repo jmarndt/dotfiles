@@ -1,3 +1,4 @@
 .headers on
 .mode box
 .nullvalue <null>
+.timer on
