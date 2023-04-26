@@ -21,7 +21,11 @@ print_end_msg() {
     printf "\n$RESET$BOLD$GREEN$MSG_BLOCK\nBOOTSTRAP COMPLETE\n$MSG_BLOCK\n$RESET"
 }
 
-verify_mac() {
+gather_user_info() {
+    read -p "Work email: " WORK_EMAIL
+}
+
+macos_verify() {
     if [[ $OSTYPE != 'darwin'* ]]; then
         exit 1
     fi
@@ -35,11 +39,7 @@ verify_mac() {
     fi
 }
 
-gather_user_info() {
-    read -p "Work email: " WORK_EMAIL
-}
-
-install_xcode() {
+macos_install_xcode() {
     print_msg "Installing Xcode Command Line Tools..."
     xcode-select -p &> /dev/null
     if [ $? -ne 0 ]; then
@@ -47,6 +47,53 @@ install_xcode() {
         PROD=$(softwareupdate -l | grep "\*.*Command Line" | tail -n 1 | sed 's/^[^C]* //')
         softwareupdate -i "$PROD" --verbose;
     fi
+}
+
+macos_settings() {
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+    defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+    defaults write com.apple.TextEdit RichText 0
+    defaults write com.apple.TextEdit CorrectSpellingAutomatically 0
+    defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+    defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+    defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+    defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+    defaults write com.apple.LaunchServices LSQuarantine -bool false
+    defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+    defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+    defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+    defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+    defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+    defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+    defaults write com.apple.screensaver askForPassword -int 1
+    defaults write com.apple.screensaver askForPasswordDelay -int 0
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+    defaults write com.apple.finder ShowStatusBar -bool true
+    defaults write com.apple.finder ShowPathbar -bool true
+    defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+    defaults write com.apple.finder _FXSortFoldersFirst -bool true
+    defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+    defaults write com.apple.dock tilesize -int 16
+    defaults write com.apple.dock minimize-to-application -bool true
+    defaults write com.apple.dock show-process-indicators -bool true
+    defaults write com.apple.dock mru-spaces -bool false
+    defaults write com.apple.dock show-recents -bool false
+    defaults write com.apple.Safari UniversalSearchEnabled -bool false
+    defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+    defaults write com.apple.Safari IncludeDevelopMenu -bool true
+    defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+    defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+    defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+    defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
+    defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+    defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+    defaults write com.apple.addressbook ABShowDebugMenu -bool true
+    defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
+    defaults write com.apple.DiskUtility advanced-image-options -bool true
+    defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+    defaults write com.apple.SoftwareUpdate AutomaticDownload -int 0
+    defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 }
 
 generate_ssh_keys() {
@@ -85,8 +132,8 @@ install_dotfiles() {
     DOTFILES_DIR_PATH=~/dotfiles
     if [ ! -d $DOTFILES_DIR_PATH ]; then
         git clone https://github.com/jmarndt/dotfiles.git $DOTFILES_DIR_PATH
+        /bin/bash $DOTFILES_DIR_PATH/dotfiles.sh
     fi
-    /bin/bash $DOTFILES_DIR_PATH/dotfiles.sh
 }
 
 install_dev_tools() {
@@ -104,10 +151,11 @@ install_dev_tools() {
 }
 
 bootstrap_mac() {
-    verify_mac
+    macos_verify
     print_start_msg
     gather_user_info
-    install_xcode
+    macos_install_xcode
+    macos_settings
     generate_ssh_keys
     configure_work_git
     install_homebrew
