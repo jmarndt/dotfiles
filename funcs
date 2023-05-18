@@ -1,0 +1,35 @@
+mkbak() {
+  filename=$1
+  cp $filename ${filename}.bak.$(date +%m%d%Y-%H%M%S)
+}
+
+rsbak() {
+  filename=$1
+  mv $filename ${filename%%.bak*}
+}
+
+take() {
+  mkdir -p $1 && cd $1
+}
+
+ggu() {
+  [[ "$#" != 1 ]] && local b=$(git_current_branch)
+	git pull --rebase origin "${b:=$1}"
+}
+
+git_current_branch() {
+  git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/\1/p'
+}
+
+git_main_branch() {
+  command git rev-parse --git-dir &>/dev/null || return
+  local ref
+  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk}; do
+    if command git show-ref -q --verify $ref; then
+      echo ${ref:t}
+      return
+    fi
+  done
+  echo master
+}
+
