@@ -13,12 +13,6 @@ autoload -U promptinit
 autoload -Uz vcs_info
 setopt prompt_subst
 
-precmd() { vcs_info }
-zstyle ':vcs_info:*' formats '%{%F{green}%}%u%c%B(%b)%{%f%}'
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr '%{%f%}%{%F{red}%}'
-zstyle ':vcs_info:*' unstagedstr '%{%f%}%{%F{red}%}'
-
 source $DOTFILES_DIR/prompt
 source $DOTFILES_DIR/funcs
 source $DOTFILES_DIR/aliases
