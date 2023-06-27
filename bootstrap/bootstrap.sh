@@ -9,9 +9,7 @@ if [ "$#" != "1" ]; then
 fi
 
 if echo "${VALID_ARGS[@]}" | grep -qw "$1"; then
-    curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap_funcs.sh --output ./bootstrap_temp.sh
-    ./bootstrap_temp.sh $1
-    rm ./bootstrap_temp.sh
+    curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap_funcs.sh | bash -s -- $1
 else
     echo -e "$USAGE\n"
     exit 2
