@@ -24,6 +24,7 @@ print_end_msg() {
 }
 
 gather_user_info() {
+    print_msg "Enter information..."
     read -p "Work email: " WORK_EMAIL
 }
 
