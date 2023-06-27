@@ -60,7 +60,7 @@ verify_os() {
     esac
 }
 
-macos_install_xcode() {
+macos_install_xcode_clt() {
     print_msg "Installing Xcode Command Line Tools..."
     xcode-select -p &> /dev/null
     if [ $? -ne 0 ]; then
@@ -121,7 +121,7 @@ generate_ssh_keys() {
     print_msg "Generating SSH keys..."
     SSH_KEY_PATH=~/.ssh/id_ed25519
     if [ ! -f $SSH_KEY_PATH ]; then
-        ssh-keygen -t ed25519 -N "" -C "" -f $SSH_KEY_PATH
+        ssh-keygen -t ed25519 -N "" -f $SSH_KEY_PATH
     fi
 }
 
@@ -130,9 +130,9 @@ configure_work_git() {
     WORK_DIR_PATH=~/work
     if [ ! -d $WORK_DIR_PATH ]; then
         mkdir $WORK_DIR_PATH
-        if [ ! -z "$WORK_EMAIL" ]; then
-            printf "[user]\n  email = $WORK_EMAIL\n" > $WORK_DIR_PATH/.gitconfig
-        fi
+    fi
+    if [ ! -z "$WORK_EMAIL" ]; then
+        printf "[user]\n  email = $WORK_EMAIL\n" > $WORK_DIR_PATH/.gitconfig
     fi
 }
 
@@ -146,6 +146,10 @@ install_homebrew() {
         rm ./$BREW_FILE.bootstrap
         rm ./$BREW_FILE.bootstrap.lock.json
     fi
+}
+
+install_dnf_packages() {
+    echo "TODO"
 }
 
 install_dotfiles() {
@@ -172,24 +176,21 @@ install_dev_tools() {
 }
 
 bootstrap_mac() {
-    macos_install_xcode
+    macos_install_xcode_clt
     macos_settings
-    generate_ssh_keys
-    configure_work_git
     install_homebrew
-    install_dotfiles
-    install_dev_tools
-    print_end_msg
 }
 
 bootstrap_fedora() {
-    echo "TODO"
+    install_dnf_packages
 }
 
 bootstrap() {
     verify_os
     print_start_msg
     gather_user_info
+    generate_ssh_keys
+    configure_work_git
 
     case $OS in
     "fedora")
@@ -199,6 +200,10 @@ bootstrap() {
         bootstrap_mac
         ;;
     esac
+
+    # install_dotfiles
+    # install_dev_tools
+    print_end_msg
 }
 
 OS=$1
