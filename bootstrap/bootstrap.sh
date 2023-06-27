@@ -14,5 +14,5 @@ if echo "${VALID_ARGS[@]}" | grep -qw "$1"; then
     rm ./bootstrap_temp.sh
 else
     echo -e "$USAGE\n"
-    exit 1
+    exit 2
 fi

@@ -6,7 +6,7 @@ MacOS:
 curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh | bash -s -- mac
 ```
 
-Debian based:
+Fedora:
 ```
-curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh | bash -s -- deb
+curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh | bash -s -- fedora
 ```
