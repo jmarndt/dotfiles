@@ -1,10 +1,6 @@
 #!/bin/bash
+
 DOTFILES_DIR=$HOME/dotfiles
-VIMRC=vimrc
-SQLITERC=sqliterc
-GIT_CONF=gitconfig
-ZSHRC=zshrc
-SOURCE="source $DOTFILES_DIR/$ZSHRC"
 
 link_dotfile() {
     dotfile=$1
@@ -13,9 +9,29 @@ link_dotfile() {
     ln -s $DOTFILES_DIR/$dotfile $HOME/.$dotfile
 }
 
-link_dotfile $VIMRC
-link_dotfile $SQLITERC
-link_dotfile $GIT_CONF
+link_shellrc() {
+    SOURCE="source $DOTFILES_DIR/shellrc"
 
-[ -f $HOME/$ZSHRC ] && grep -v "$SOURCE" $HOME/.$ZSHRC > temp && mv temp $HOME/.$ZSHRC
-echo $SOURCE >> $HOME/.$ZSHRC
+    if [[ $SHELL = "/bin/zsh" ]]; then
+        ZSHRC=zshrc
+
+        [ -f $HOME/.$ZSHRC ] && grep -v "$SOURCE" $HOME/.$ZSHRC > temp && mv temp $HOME/.$ZSHRC
+        echo $SOURCE >> $HOME/.$ZSHRC
+    fi
+    if [[ $SHELL = "/bin/bash" ]]; then
+        BASHRC=bashrc
+
+        [ -f $HOME/.$BASHRC ] && grep -v "$SOURCE" $HOME/.$BASHRC > temp && mv temp $HOME/.$BASHRC
+        echo $SOURCE >> $HOME/.$BASHRC
+    fi
+}
+
+main() {
+    link_dotfile "vimrc"
+    link_dotfile "sqliterc"
+    link_dotfile "gitconfig"
+
+    link_shellrc
+}
+
+main

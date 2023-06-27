@@ -32,4 +32,3 @@ git_main_branch() {
   done
   echo master
 }
-
