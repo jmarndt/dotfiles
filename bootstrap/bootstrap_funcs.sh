@@ -7,7 +7,6 @@ BOLD="\033[1m"
 RED="\033[91m"
 GREEN="\033[92m"
 MSG_BLOCK=""
-WORK_EMAIL=""
 OS=""
 
 print_msg() {
@@ -21,11 +20,6 @@ print_start_msg() {
 
 print_end_msg() {
     printf "\n$RESET$BOLD$GREEN$MSG_BLOCK\nBOOTSTRAP COMPLETE\n$MSG_BLOCK\n$RESET"
-}
-
-gather_user_info() {
-    print_msg "Enter information..."
-    read -p "Work email: " WORK_EMAIL
 }
 
 macos_verify() {
@@ -131,9 +125,7 @@ configure_work_git() {
     WORK_DIR_PATH=~/work
     if [ ! -d $WORK_DIR_PATH ]; then
         mkdir $WORK_DIR_PATH
-    fi
-    if [ ! -z "$WORK_EMAIL" ]; then
-        printf "[user]\n  email = $WORK_EMAIL\n" > $WORK_DIR_PATH/.gitconfig
+        printf "[user]\n  email = replace@me.com\n" > $WORK_DIR_PATH/.gitconfig
     fi
 }
 
@@ -189,7 +181,6 @@ bootstrap_fedora() {
 bootstrap() {
     verify_os
     print_start_msg
-    gather_user_info
     generate_ssh_keys
     configure_work_git
 
