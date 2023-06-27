@@ -3,9 +3,11 @@ export LESSHISTFILE=$HOME/.lesshst
 
 if [[ $SHELL = "/bin/zsh" ]]; then
     source $DOTFILES_DIR/zshrc
+    export SHELLRC="$HOME/.zshrc"
 fi
 if [[ $SHELL = "/bin/bash" ]]; then
     source $DOTFILES_DIR/bashrc
+    export SHELLRC="$HOME/.bashrc"
 fi
 
 source $DOTFILES_DIR/funcs
