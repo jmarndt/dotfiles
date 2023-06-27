@@ -13,3 +13,13 @@ zstyle ':vcs_info:*' formats '%{%F{green}%}%u%c%B(%b)%{%f%}'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '%{%f%}%{%F{red}%}'
 zstyle ':vcs_info:*' unstagedstr '%{%f%}%{%F{red}%}'
+
+PROMPT='%B'
+PROMPT+='%{$fg[red]%}['
+PROMPT+='%{$fg[yellow]%}%n'
+PROMPT+='%{$fg[green]%}@'
+PROMPT+='%{$fg[blue]%}%M '
+PROMPT+='%{$fg[magenta]%}%~'
+PROMPT+='%{$fg[red]%}]'
+PROMPT+='%{$reset_color%}$%b '
+RPROMPT='${vcs_info_msg_0_}'

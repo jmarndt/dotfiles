@@ -4,7 +4,9 @@ export LESSHISTFILE=$HOME/.lesshst
 if [[ $SHELL = "/bin/zsh" ]]; then
     source $DOTFILES_DIR/zshrc
 fi
+if [[ $SHELL = "/bin/bash" ]]; then
+    source $DOTFILES_DIR/bashrc
+fi
 
-source $DOTFILES_DIR/prompt
 source $DOTFILES_DIR/funcs
 source $DOTFILES_DIR/aliases
