@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DOTFILES_DIR=$HOME/dotfiles
+SHELLRC=""
 
 link_dotfile() {
     dotfile=$1
@@ -10,20 +11,16 @@ link_dotfile() {
 }
 
 link_shellrc() {
-    SOURCE="source $DOTFILES_DIR/shellrc"
-
     if [[ $SHELL = "/bin/zsh" ]]; then
-        ZSHRC=zshrc
-
-        [ -f $HOME/.$ZSHRC ] && grep -v "$SOURCE" $HOME/.$ZSHRC > temp && mv temp $HOME/.$ZSHRC
-        echo $SOURCE >> $HOME/.$ZSHRC
+        SHELLRC=zshrc
     fi
     if [[ $SHELL = "/bin/bash" ]]; then
-        BASHRC=bashrc
-
-        [ -f $HOME/.$BASHRC ] && grep -v "$SOURCE" $HOME/.$BASHRC > temp && mv temp $HOME/.$BASHRC
-        echo $SOURCE >> $HOME/.$BASHRC
+        SHELLRC=bashrc
     fi
+
+    SOURCE="source $DOTFILES_DIR/shellrc"
+    [ -f $HOME/.$SHELLRC ] && grep -v "$SOURCE" $HOME/.$SHELLRC > temp && mv temp $HOME/.$SHELLRC
+    echo $SOURCE >> $HOME/.$SHELLRC
 }
 
 main() {
