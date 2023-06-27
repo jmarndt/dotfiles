@@ -1,3 +1,5 @@
+#!/bin/bash
+
 CLEAR_SCREEN="\33c\e[3J"
 RESET="\033[0m"
 DEFAULT="\033[39m"
@@ -6,13 +8,13 @@ RED="\033[91m"
 GREEN="\033[92m"
 MSG_BLOCK=""
 WORK_EMAIL=""
+OS=""
 
 print_msg() {
     printf "\n$MSG_BLOCK\n$1\n"
 }
 
 print_start_msg() {
-    echo "start mac..."
     MSG_BLOCK="##################################################"
     printf "$CLEAR_SCREEN$RESET$BOLD$GREEN$MSG_BLOCK\nSTARTING BOOTSTRAP\n$MSG_BLOCK\n$RESET"
 }
@@ -37,6 +39,21 @@ macos_verify() {
         open "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles"
         exit 1
     fi
+}
+
+fedora_verify() {
+    echo "verifying Fedora"
+}
+
+verify_os() {
+    case $OS in
+    "fedora")
+        fedora_verify
+        ;;
+    "mac")
+        macos_verify
+        ;;
+    esac
 }
 
 macos_install_xcode() {
@@ -151,9 +168,6 @@ install_dev_tools() {
 }
 
 bootstrap_mac() {
-    macos_verify
-    print_start_msg
-    gather_user_info
     macos_install_xcode
     macos_settings
     generate_ssh_keys
@@ -164,18 +178,24 @@ bootstrap_mac() {
     print_end_msg
 }
 
-bootstrap_deb() {
-    echo "Bootstrapping deb..."
-    # TODO
+bootstrap_fedora() {
+    echo "TODO"
 }
 
 bootstrap() {
-    case $1 in
-    "deb")
-        bootstrap_deb
+    verify_os
+    print_start_msg
+    gather_user_info
+
+    case $OS in
+    "fedora")
+        bootstrap_fedora
         ;;
     "mac")
         bootstrap_mac
         ;;
     esac
 }
+
+OS=$1
+bootstrap
