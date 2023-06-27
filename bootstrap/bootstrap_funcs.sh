@@ -193,7 +193,7 @@ bootstrap() {
         ;;
     esac
 
-    # install_dotfiles
+    install_dotfiles
     # install_dev_tools
     print_end_msg
 }
