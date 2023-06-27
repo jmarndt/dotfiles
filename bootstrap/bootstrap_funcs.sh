@@ -29,7 +29,7 @@ gather_user_info() {
 
 macos_verify() {
     if [[ $OSTYPE != 'darwin'* ]]; then
-        exit 1
+        exit 3
     fi
     if ! plutil -lint /Library/Preferences/com.apple.TimeMachine.plist >/dev/null ; then
         printf $CLEAR_SCREEN$BOLD$RED
@@ -37,12 +37,16 @@ macos_verify() {
         printf "Open $BOLD$GREEN""Prefernces > Privacy & Security > Full Disk Access$RESET and enable Terminal\n"
         printf "Then quit Terminal and re-run this script\n\n"
         open "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles"
-        exit 1
+        exit 4
     fi
 }
 
 fedora_verify() {
-    echo "verifying Fedora"
+    if [ ! -f /etc/os-release ]; then
+        exit 3
+    fi
+    source /etc/os-release
+    [[ $PRETTY_NAME != *Fedora* ]] && exit 3
 }
 
 verify_os() {
