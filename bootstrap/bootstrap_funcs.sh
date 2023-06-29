@@ -23,9 +23,7 @@ print_end_msg() {
 }
 
 macos_verify() {
-    if [[ $OSTYPE != 'darwin'* ]]; then
-        exit 3
-    fi
+    [[ $OSTYPE != 'darwin'* ]] && exit 3
     if ! plutil -lint /Library/Preferences/com.apple.TimeMachine.plist >/dev/null ; then
         printf $CLEAR_SCREEN$BOLD$RED
         printf "WARNING: Full Disk Access Required!$RESET\n\n"
@@ -36,22 +34,20 @@ macos_verify() {
     fi
 }
 
-fedora_verify() {
-    if [ ! -f /etc/os-release ]; then
-        exit 3
-    fi
-    source /etc/os-release
-    [[ $PRETTY_NAME != *Fedora* ]] && exit 3
-}
-
 verify_os() {
+    [ -f /etc/os-release ] && source /etc/os-release
     case $OS in
+    "debian")
+	[[ $PRETTY_NAME != *Debian* ]] && exit 3
     "fedora")
-        fedora_verify
-        ;;
+        [[ $PRETTY_NAME != *Fedora* ]] && exit 3
+	;;
     "mac")
         macos_verify
         ;;
+    *)
+	exit 3
+	;;
     esac
 }
 
@@ -141,10 +137,6 @@ install_homebrew() {
     fi
 }
 
-install_dnf_packages() {
-    echo "TODO"
-}
-
 install_dotfiles() {
     print_msg "Installing dotfiles..."
     DOTFILES_DIR_PATH=~/dotfiles
@@ -174,25 +166,12 @@ bootstrap_mac() {
     install_homebrew
 }
 
-bootstrap_fedora() {
-    install_dnf_packages
-}
-
 bootstrap() {
     verify_os
     print_start_msg
     generate_ssh_keys
     configure_work_git
-
-    case $OS in
-    "fedora")
-        bootstrap_fedora
-        ;;
-    "mac")
-        bootstrap_mac
-        ;;
-    esac
-
+    [[ $OS = "mac" ]] && bootstrap_mac
     install_dotfiles
     install_dev_tools
     print_end_msg

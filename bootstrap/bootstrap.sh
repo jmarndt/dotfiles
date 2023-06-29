@@ -1,7 +1,7 @@
 #!/bin/bash
 
-USAGE="USAGE: bootstrap.sh [ fedora | mac ]"
-VALID_ARGS=("fedora" "mac")
+USAGE="USAGE: bootstrap.sh [ debian | mac ]"
+VALID_ARGS=("debian" "mac")
 
 if [ "$#" != "1" ]; then
     echo -e "$USAGE\n"
