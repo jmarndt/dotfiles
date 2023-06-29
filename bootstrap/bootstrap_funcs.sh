@@ -39,6 +39,7 @@ verify_os() {
     case $OS in
     "debian")
 	[[ $PRETTY_NAME != *Debian* ]] && exit 3
+	;;
     "fedora")
         [[ $PRETTY_NAME != *Fedora* ]] && exit 3
 	;;

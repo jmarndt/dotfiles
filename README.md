@@ -6,7 +6,7 @@ MacOS:
 curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh | bash -s mac
 ```
 
-Fedora:
+Debian:
 ```
-curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh | bash -s fedora
+curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh | bash -s debian 
 ```
