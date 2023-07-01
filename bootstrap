@@ -20,11 +20,10 @@ echo -e "
 This script will bootstrap a new system and install dotfiles
 See https://github.com/jmarndt/dotfiles for more details
 "
-exec 1</dev/tty
-printf "$BOLD"
-read -p "Continue with bootstrap? [Y/n]: " run_bs
-printf "$RESET\n"
-[[ $run_bs = *n* || $run_bs = *N* ]] && exit 5
+# printf "$BOLD"
+# read -p "Continue with bootstrap? [Y/n]: " run_bs
+# printf "$RESET\n"
+# [[ $run_bs = *n* || $run_bs = *N* ]] && exit 5
 
 print_msg() {
     printf "$GREEN$1\n"
@@ -122,8 +121,6 @@ configure_work_git() {
     print_msg "Configuring work directory..."
     WORK_DIR_PATH=~/work
     if [ ! -d $WORK_DIR_PATH ]; then
-        read -p 'Enter work email: ' work_email
-        echo $work_email
         mkdir $WORK_DIR_PATH
         printf "[user]\n  email = replace@me.com\n" > $WORK_DIR_PATH/.gitconfig
     fi
