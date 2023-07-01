@@ -21,9 +21,14 @@ This script will bootstrap a new system and install dotfiles
 See https://github.com/jmarndt/dotfiles for more details
 "
 
+printf "$BOLD"
+read -p "Continue with bootstrap? [Y/n]: " run_bs
+printf "$RESET\n"
+[[ $run_bs = *n* || $run_bs = *N* ]] && exit 5
+
 print_msg() {
-    printf "$1\n"
-    printf "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n\n"
+    printf "$GREEN$1\n"
+    printf "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░$RESET\n\n"
 }
 
 macos_verify_terminal() {
@@ -117,6 +122,8 @@ configure_work_git() {
     print_msg "Configuring work directory..."
     WORK_DIR_PATH=~/work
     if [ ! -d $WORK_DIR_PATH ]; then
+        read -p 'Enter work email: ' work_email
+        echo $work_email
         mkdir $WORK_DIR_PATH
         printf "[user]\n  email = replace@me.com\n" > $WORK_DIR_PATH/.gitconfig
     fi
@@ -134,9 +141,14 @@ install_homebrew() {
     fi
 }
 
+install_aptitude() {
+    # below is only simulation for now
+    apt install -s $(cat aptpackages)
+}
+
 install_basic_software() {
     [[ $OS = "mac" ]] && install_homebrew
-    [[ $OS = "debian" ]] && echo "TODO: Install APT packages..."
+    [[ $OS = "debian" ]] && install_aptitude 
 }
 
 install_dotfiles() {
@@ -166,10 +178,10 @@ bootstrap() {
     print_msg "Starting bootstrap..."
     check_os
     generate_ssh_keys
-    configure_work_git
     install_basic_software
     install_dotfiles
     install_dev_tools
+    configure_work_git
     print_msg "Bootstrap complete"
 }
 
