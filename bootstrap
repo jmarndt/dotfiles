@@ -20,10 +20,6 @@ echo -e "
 This script will bootstrap a new system and install dotfiles
 See https://github.com/jmarndt/dotfiles for more details
 "
-# printf "$BOLD"
-# read -p "Continue with bootstrap? [Y/n]: " run_bs
-# printf "$RESET\n"
-# [[ $run_bs = *n* || $run_bs = *N* ]] && exit 5
 
 print_msg() {
     printf "$GREEN$1\n"
