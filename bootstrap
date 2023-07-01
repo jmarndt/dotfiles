@@ -20,7 +20,7 @@ echo -e "
 This script will bootstrap a new system and install dotfiles
 See https://github.com/jmarndt/dotfiles for more details
 "
-
+exec 1</dev/tty
 printf "$BOLD"
 read -p "Continue with bootstrap? [Y/n]: " run_bs
 printf "$RESET\n"
