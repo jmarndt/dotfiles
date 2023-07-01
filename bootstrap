@@ -1,55 +1,39 @@
 #!/bin/bash
 
-CLEAR_SCREEN="\33c\e[3J"
 RESET="\033[0m"
 DEFAULT="\033[39m"
 BOLD="\033[1m"
 RED="\033[91m"
 GREEN="\033[92m"
-MSG_BLOCK=""
 OS=""
 
+echo -e "
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░██████╗░░█████╗░████████╗███████╗██╗██╗░░░░░███████╗███████╗░░
+░░██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║██║░░░░░██╔════╝██╔════╝░░
+░░██║░░██║██║░░██║░░░██║░░░█████╗░░██║██║░░░░░█████╗░░███████╗░░
+░░██║░░██║██║░░██║░░░██║░░░██╔══╝░░██║██║░░░░░██╔══╝░░░╚═══██╗░░
+░░██████╔╝╚█████╔╝░░░██║░░░██║░░░░░██║███████╗███████╗███████║░░
+░░╚═════╝░░╚════╝░░░░╚═╝░░░╚═╝░░░░░╚═╝╚══════╝╚══════╝╚══════╝░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+This script will bootstrap a new system and install dotfiles
+See https://github.com/jmarndt/dotfiles for more details
+"
+
 print_msg() {
-    printf "\n$MSG_BLOCK\n$1\n"
+    printf "$1\n"
+    printf "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n\n"
 }
 
-print_start_msg() {
-    MSG_BLOCK="##################################################"
-    printf "$CLEAR_SCREEN$RESET$BOLD$GREEN$MSG_BLOCK\nSTARTING BOOTSTRAP\n$MSG_BLOCK\n$RESET"
-}
-
-print_end_msg() {
-    printf "\n$RESET$BOLD$GREEN$MSG_BLOCK\nBOOTSTRAP COMPLETE\n$MSG_BLOCK\n$RESET"
-}
-
-macos_verify() {
-    [[ $OSTYPE != 'darwin'* ]] && exit 3
+macos_verify_terminal() {
     if ! plutil -lint /Library/Preferences/com.apple.TimeMachine.plist >/dev/null ; then
-        printf $CLEAR_SCREEN$BOLD$RED
-        printf "WARNING: Full Disk Access Required!$RESET\n\n"
+        printf "$BOLD$RED""WARNING: Full Disk Access Required!$RESET\n\n"
         printf "Open $BOLD$GREEN""Prefernces > Privacy & Security > Full Disk Access$RESET and enable Terminal\n"
         printf "Then quit Terminal and re-run this script\n\n"
         open "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles"
-        exit 4
+        exit 1
     fi
-}
-
-verify_os() {
-    [ -f /etc/os-release ] && source /etc/os-release
-    case $OS in
-    "debian")
-	[[ $PRETTY_NAME != *Debian* ]] && exit 3
-	;;
-    "fedora")
-        [[ $PRETTY_NAME != *Fedora* ]] && exit 3
-	;;
-    "mac")
-        macos_verify
-        ;;
-    *)
-	exit 3
-	;;
-    esac
 }
 
 macos_install_xcode_clt() {
@@ -109,6 +93,18 @@ macos_settings() {
     defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 }
 
+check_os() {
+    [ -f /etc/os-release ] && source /etc/os-release
+    [[ $PRETTY_NAME = *Debian* ]] && OS="debian"
+	if [[ $OSTYPE = 'darwin'* ]]; then
+        OS="mac"
+        macos_verify_terminal
+        macos_install_xcode_clt
+        macos_settings
+    fi
+    [[ $OS != "debian" && $OS != "mac" ]] && exit 2
+}
+
 generate_ssh_keys() {
     print_msg "Generating SSH keys..."
     SSH_KEY_PATH=~/.ssh/id_ed25519
@@ -128,8 +124,8 @@ configure_work_git() {
 
 install_homebrew() {
     print_msg "Installing Homebrew & packages..."
-    BREW_FILE="Brewfile"
     if test ! $(which brew); then
+        BREW_FILE="Brewfile"
         NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/$BREW_FILE --output ./$BREW_FILE.bootstrap
         brew bundle install --file ./$BREW_FILE.bootstrap
@@ -138,12 +134,17 @@ install_homebrew() {
     fi
 }
 
+install_basic_software() {
+    [[ $OS = "mac" ]] && install_homebrew
+    [[ $OS = "debian" ]] && echo "TODO: Install APT packages..."
+}
+
 install_dotfiles() {
     print_msg "Installing dotfiles..."
     DOTFILES_DIR_PATH=~/dotfiles
     if [ ! -d $DOTFILES_DIR_PATH ]; then
         git clone https://github.com/jmarndt/dotfiles.git $DOTFILES_DIR_PATH
-        /bin/bash $DOTFILES_DIR_PATH/dotfiles.sh
+        /bin/bash $DOTFILES_DIR_PATH/install
     fi
 }
 
@@ -161,22 +162,15 @@ install_dev_tools() {
     fi
 }
 
-bootstrap_mac() {
-    macos_install_xcode_clt
-    macos_settings
-    install_homebrew
-}
-
 bootstrap() {
-    verify_os
-    print_start_msg
+    print_msg "Starting bootstrap..."
+    check_os
     generate_ssh_keys
     configure_work_git
-    [[ $OS = "mac" ]] && bootstrap_mac
+    install_basic_software
     install_dotfiles
     install_dev_tools
-    print_end_msg
+    print_msg "Bootstrap complete"
 }
 
-OS=$1
 bootstrap

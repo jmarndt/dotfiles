@@ -1,12 +1,8 @@
 # dotfiles
-To bootstrap a new system run one of the following.
+These are my dotfiles that contain customized configurations for a handful of applications for a unified expereince across machines.
 
-MacOS:
+## bootstrapping
+To setup a fresh (Debian or macOS) install with basic tools and these dotfiles simply run the following from the terminal.
 ```
-curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh | bash -s mac
-```
-
-Debian:
-```
-curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap/bootstrap.sh | bash -s debian 
+curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap | bash
 ```
