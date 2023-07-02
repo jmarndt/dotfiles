@@ -135,13 +135,22 @@ install_homebrew() {
 }
 
 install_aptitude() {
-    # below is only simulation for now
-    apt install -s $(cat aptpackages)
+    APT_FILE="aptpackages"
+    curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/$APT_FILE --output ./$APT_FILE
+    sudo apt install $(cat $APT_FILE)
+    rm ./$APT_FILE
+}
+
+install_flatpak() {
+    # TODO: Install Flatpaks... [tenacity, dbeaver, insomnia, obsidian, vscode, vscodium]
 }
 
 install_basic_software() {
     [[ $OS = "mac" ]] && install_homebrew
-    [[ $OS = "debian" ]] && install_aptitude 
+    if [[ $OS = "debian" ]]; then
+        install_aptitude
+        install_flatpak
+    fi
 }
 
 install_dotfiles() {
