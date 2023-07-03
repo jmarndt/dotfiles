@@ -23,7 +23,7 @@ See https://github.com/jmarndt/dotfiles for more details
 "
 
 print_msg() {
-    printf "$GREEN$1\n"
+    printf "\n$GREEN$1\n"
     printf "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░$RESET\n\n"
 }
 
