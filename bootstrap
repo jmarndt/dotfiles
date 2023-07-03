@@ -1,5 +1,6 @@
 #!/bin/bash
 
+REPO="https://raw.githubusercontent.com/jmarndt/dotfiles/master"
 RESET="\033[0m"
 DEFAULT="\033[39m"
 BOLD="\033[1m"
@@ -127,7 +128,7 @@ install_homebrew() {
     if test ! $(which brew); then
         BREW_FILE="Brewfile"
         NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/$BREW_FILE --output ./$BREW_FILE.bootstrap
+        curl $REPO/$BREW_FILE --output ./$BREW_FILE.bootstrap
         brew bundle install --file ./$BREW_FILE.bootstrap
         rm ./$BREW_FILE.bootstrap
         rm ./$BREW_FILE.bootstrap.lock.json
@@ -135,14 +136,22 @@ install_homebrew() {
 }
 
 install_aptitude() {
-    APT_FILE="aptpackages"
-    curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/$APT_FILE --output ./$APT_FILE
+    APT_FILE="aptfile"
+    curl $REPO/$APT_FILE --output ./$APT_FILE
     sudo apt install $(cat $APT_FILE)
     rm ./$APT_FILE
 }
 
 install_flatpak() {
-    # TODO: Install Flatpaks... [tenacity, dbeaver, insomnia, obsidian, vscode, vscodium]
+    if ! [ -x "$(command -v flatpak)" ]; then
+        sudo apt install flatpak
+    fi
+    [[ $XDG_CURRENT_DESKTOP = "GNOME" ]] && sudo apt install gnome-software-plugin-flatpak
+    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    FLATPAK_FILE="flatpakfile"
+    curl $REPO/$FLATPAK_FILE --output ./$FLATPAK_FILE
+    cat ./$FLATPAK_FILE | xargs -I{} flatpak install {}
+    rm ./$FLATPAK_FILE
 }
 
 install_basic_software() {
