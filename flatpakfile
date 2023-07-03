@@ -10,3 +10,5 @@ flathub org.mozilla.firefox
 flathub org.tenacityaudio.Tenacity
 flathub org.gimp.GIMP
 flathub org.inkscape.Inkscape
+flathub com.jetbrains.WebStorm
+flathub com.jetbrains.Rider
