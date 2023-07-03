@@ -136,13 +136,15 @@ install_homebrew() {
 }
 
 install_aptitude() {
+    print_msg "Installing aptitude packages..."
     APT_FILE="aptfile"
     curl $REPO/$APT_FILE --output ./$APT_FILE
-    sudo apt install $(cat $APT_FILE)
+    sudo apt install -y $(cat $APT_FILE)
     rm ./$APT_FILE
 }
 
 install_flatpak() {
+    print_msg "Install Flatpak apps..."
     if ! [ -x "$(command -v flatpak)" ]; then
         sudo apt install flatpak
     fi
