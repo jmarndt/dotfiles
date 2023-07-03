@@ -152,7 +152,7 @@ install_flatpak() {
     sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     FLATPAK_FILE="flatpakfile"
     curl $REPO/$FLATPAK_FILE --output ./$FLATPAK_FILE
-    cat ./$FLATPAK_FILE | xargs -I{} flatpak install {}
+    cat ./$FLATPAK_FILE | xargs -I{} flatpak install -y {}
     rm ./$FLATPAK_FILE
 }
 
