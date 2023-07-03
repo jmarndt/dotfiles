@@ -1,9 +1,7 @@
 curl
-git
 flatpak
-python3
-python3-pip
 ffmpeg
+git
 gnupg
 jq
 jqp
@@ -12,8 +10,13 @@ mitmproxy
 newsboat
 odt2txt
 pass
+podman
+podman-compose
+python3
+python3-pip
 rclone
 rtl-433
+sqlite3
 tmux
 toilet
 tree
@@ -22,5 +25,3 @@ wireguard
 wireguard-tools
 yt-dlp
 youtubedl-gui
-podman
-podman-compose
