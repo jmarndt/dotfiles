@@ -1,14 +1,14 @@
-flathub md.obsidian.Obsidian
-flathub com.vscodium.codium
-flathub rest.insomnia.Insomnia
-flathub org.keepassxc.KeePassXC
-flathub com.bitwarden.desktop
-flathub org.videolan.VLC
-flathub io.dbeaver.DBeaverCommunity
-flathub org.chromium.Chromium
-flathub org.mozilla.firefox
-flathub org.tenacityaudio.Tenacity
-flathub org.gimp.GIMP
-flathub org.inkscape.Inkscape
-flathub com.jetbrains.WebStorm
-flathub com.jetbrains.Rider
+md.obsidian.Obsidian
+com.vscodium.codium
+rest.insomnia.Insomnia
+org.keepassxc.KeePassXC
+com.bitwarden.desktop
+org.videolan.VLC
+io.dbeaver.DBeaverCommunity
+org.chromium.Chromium
+org.mozilla.firefox
+org.tenacityaudio.Tenacity
+org.gimp.GIMP
+org.inkscape.Inkscape
+com.jetbrains.WebStorm
+com.jetbrains.Rider
