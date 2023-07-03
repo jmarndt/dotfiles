@@ -5,7 +5,6 @@ python3
 python3-pip
 ffmpeg
 gnupg
-iperf3
 jq
 jqp
 jid
