@@ -22,6 +22,7 @@ main() {
     link_dotfile "vimrc"
     link_dotfile "sqliterc"
     link_dotfile "gitconfig"
+    link_dotfile "stignore"
     link_shellrc
 }
 
