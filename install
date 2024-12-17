@@ -23,6 +23,7 @@ main() {
     link_dotfile "sqliterc"
     link_dotfile "gitconfig"
     link_dotfile "stignore"
+    link_dotfile "tmux.conf"
     link_shellrc
 }
 
