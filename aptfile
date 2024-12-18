@@ -1,13 +1,18 @@
+bat
 curl
+direnv
 flatpak
 ffmpeg
+fzf
 git
 gnupg
+iperf3
 jq
 jqp
 jid
 mitmproxy
 newsboat
+nmap
 odt2txt
 pass
 podman
@@ -23,5 +28,6 @@ tree
 vim
 wireguard
 wireguard-tools
+xsel
 yt-dlp
 youtubedl-gui

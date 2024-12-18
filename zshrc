@@ -23,3 +23,6 @@ PROMPT+='%{$fg[magenta]%}%~'
 PROMPT+='%{$fg[red]%}]'
 PROMPT+='%{$reset_color%}$%b '
 RPROMPT='${vcs_info_msg_0_}'
+
+eval "$(direnv hook zsh)"
+

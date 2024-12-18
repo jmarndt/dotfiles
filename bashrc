@@ -7,3 +7,6 @@ BOLD="\033[1m"
 RESET="\033[0m"
 
 PS1="\[$BOLD$RED\][\[$YELLOW\]\u\[$GREEN\]@\[$BLUE\]\h \[$PURPLE\]\w\[$RED\]]\[$RESET\]\\$ "
+
+eval "$(direnv hook bash)"
+
