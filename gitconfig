@@ -1,8 +1,8 @@
 [user]
   email = jmarndt@users.noreply.github.com
   name = Joe Arndt
-[includeIf "gitdir:~/work/"]
-  path = ~/work/.gitconfig
+[includeIf "gitdir:~/git/"]
+  path = ~/git/.gitconfig
 [core]
   editor = \"vim\"
 [init]

@@ -8,15 +8,9 @@ git
 gnupg
 iperf3
 jq
-jqp
-jid
-mitmproxy
-newsboat
 nmap
 odt2txt
 pass
-podman
-podman-compose
 python3
 python3-pip
 rclone
@@ -30,4 +24,3 @@ wireguard
 wireguard-tools
 xsel
 yt-dlp
-youtubedl-gui

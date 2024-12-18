@@ -14,3 +14,4 @@ source $DOTFILES_DIR/funcs
 source $DOTFILES_DIR/aliases
 
 [[ -z "$TMUX" ]] && (tmux attach -t $(hostname) || tmux new -s $(hostname))
+
