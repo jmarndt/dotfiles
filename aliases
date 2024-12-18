@@ -10,6 +10,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias mkdir='mkdir -p'
 
+alias bat='$(if command -v batcat 2>&1 >/dev/null ; then echo batcat --color=always ; else echo echo bat --color=always ; fi)'
+
 alias pbcopy='xsel --input --clipboard'
 alias pbpaste='xsel --output --clipboard'
 
