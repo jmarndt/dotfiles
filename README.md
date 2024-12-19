@@ -6,3 +6,17 @@ To setup a fresh (Debian or macOS) install with basic tools and these dotfiles s
 ```
 curl https://raw.githubusercontent.com/jmarndt/dotfiles/master/bootstrap | bash
 ```
+
+# bootstrapping
+First install make sure your system is up to date then install packages accordingly.
+
+## apt / dnf
+```bash
+sudo apt install -y $(curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/packages/apt)
+```
+```bash
+sudo dnf install --skip-unavailable -y $(curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/packages/apt)
+```
+
+## flatpak
+
