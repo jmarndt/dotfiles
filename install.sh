@@ -1,12 +1,9 @@
 #!/bin/bash
 
 DOTFILES=$HOME/dotfiles
-
-RESET="\033[0m" DEFAULT="\033[39m" BOLD="\033[1m" RED="\033[91m" GREEN="\033[92m"
-
-echo -e "$GREEN
+INTALL_LOG=$DOTFILES/install.log
+BANNER="
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-░░                          INSTALLING                              ░░
 ░░                                                                  ░░
 ░░   ██████╗  █████╗ ████████╗███████╗██╗██╗     ███████╗███████╗   ░░
 ░░   ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝   ░░
@@ -15,14 +12,12 @@ echo -e "$GREEN
 ░░   ██████╔╝╚█████╔╝   ██║   ██║     ██║███████╗███████╗███████║   ░░
 ░░   ╚═════╝  ╚════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝   ░░
 ░░                                                                  ░░
-░░                                                                  ░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-$RESET"
-
-[ -f /etc/os-release ] && source /etc/os-release
+"
+source $DOTFILES/scripts/init.sh
 
 if [ ! -d $DOTFILES ]; then
-    git clone https://github.com/jmarndt/dotfiles.git $DOTFILES
+    source $DOTFILES/scripts/clone.sh
 fi
 if [[ $PRETTY_NAME = *Debian* || $PRETTY_NAME = *Ubuntu* ]]; then
     source $DOTFILES/scripts/apt.sh
@@ -41,3 +36,5 @@ source $DOTFILES/scripts/ssh.sh
 source $DOTFILES/scripts/git.sh
 source $DOTFILES/scripts/node.sh
 source $DOTFILES/scripts/link.sh
+
+echo -e "$BOLD\nComplete, dotfiles are now installed!\n$RESET"

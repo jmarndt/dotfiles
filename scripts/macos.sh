@@ -1,5 +1,9 @@
 #!/bin/bash
 
+TITLE="INSTALLING PREPPING MACOS"
+COMMAND="N/A"
+log_title
+
 if ! plutil -lint /Library/Preferences/com.apple.TimeMachine.plist >/dev/null ; then
     printf "$BOLD$RED""WARNING: Full Disk Access Required!$RESET\n\n"
     printf "Open $BOLD$GREEN""Prefernces > Privacy & Security > Full Disk Access$RESET and enable Terminal\n"

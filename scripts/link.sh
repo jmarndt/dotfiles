@@ -16,6 +16,10 @@ link_shellrc() {
     echo $SOURCE >> $HOME/.$SHELLRC
 }
 
+TITLE="LINKING DOTFILES"
+COMMAND="N/A"
+log_title
+
 link_dotfile "vimrc"
 link_dotfile "sqliterc"
 link_dotfile "gitconfig"
