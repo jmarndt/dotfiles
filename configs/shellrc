@@ -1,17 +1,15 @@
-export DOTFILES_DIR=$HOME/dotfiles
 export LESSHISTFILE=$HOME/.lesshst
 
 if [[ $SHELL = "/bin/zsh" ]]; then
-    source $DOTFILES_DIR/zshrc
+    source $HOME/dotfiles/configs/zshrc
     export SHELLRC="$HOME/.zshrc"
 fi
 if [[ $SHELL = "/bin/bash" ]]; then
-    source $DOTFILES_DIR/bashrc
+    source $HOME/dotfiles/configs/bashrc
     export SHELLRC="$HOME/.bashrc"
 fi
 
-source $DOTFILES_DIR/funcs
-source $DOTFILES_DIR/aliases
+source $HOME/dotfiles/configs/functions
+source $HOME/dotfiles/configs/aliases
 
 [[ -z "$TMUX" ]] && (tmux attach -t $(hostname) || tmux new -s $(hostname))
-
