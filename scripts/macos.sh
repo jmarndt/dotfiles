@@ -68,21 +68,6 @@ macos_settings() {
     defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 }
 
-install_homebrew() {
-    if test ! $(which brew); then
-        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    fi
-    brew bundle install --file $HOME/dotfiles/packages/brew
-    rm $HOME/dotfiles/packages/brew.lock.json
-}
-
-
 macos_verify_terminal
 macos_install_xcode_clt
 macos_settings
-install_homebrew
-
-source $HOME/dotfiles/scripts/generate_ssh.sh
-source $HOME/dotfiles/scripts/git_config.sh
-source $HOME/dotfiles/scripts/node.sh
-source $HOME/dotfiles/scripts/link_configs.sh
