@@ -1,6 +1,5 @@
 #!/bin/bash
 
-REPO="https://raw.githubusercontent.com/jmarndt/dotfiles/master"
 RESET="\033[0m" DEFAULT="\033[39m" BOLD="\033[1m" RED="\033[91m" GREEN="\033[92m"
 
 echo -e "$GREEN
@@ -18,12 +17,11 @@ echo -e "$GREEN
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 $RESET"
 
+[ -f /etc/os-release ] && source /etc/os-release
+
 if [ ! -d $HOME/dotfiles ]; then
     git clone https://github.com/jmarndt/dotfiles.git $HOME/dotfiles
 fi
-
-
-[ -f /etc/os-release ] && source /etc/os-release
 if [[ $PRETTY_NAME = *Debian* || $PRETTY_NAME = *Ubuntu* ]]; then
     source $HOME/dotfiles/scripts/apt.sh
     source $HOME/dotfiles/scripts/flatpak.sh
