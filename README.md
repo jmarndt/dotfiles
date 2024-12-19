@@ -23,5 +23,15 @@ sudo dnf install --skip-unavailable -y $(curl -fsSL https://raw.githubuserconten
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 ```bash
-cat $(curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/packages/flatpak) | xargs -I{} flatpak install -y {}
+curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/packages/flatpak | xargs -I{} flatpak install -y {}
+```
+
+## homebrew
+```bash
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+WARNING: This needs tested...
+```bash
+brew bundle install --file $(curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/packages/brew)
 ```
