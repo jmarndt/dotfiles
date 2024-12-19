@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DOTFILES=$HOME/dotfiles
+
 RESET="\033[0m" DEFAULT="\033[39m" BOLD="\033[1m" RED="\033[91m" GREEN="\033[92m"
 
 echo -e "$GREEN
@@ -19,23 +21,23 @@ $RESET"
 
 [ -f /etc/os-release ] && source /etc/os-release
 
-if [ ! -d $HOME/dotfiles ]; then
-    git clone https://github.com/jmarndt/dotfiles.git $HOME/dotfiles
+if [ ! -d $DOTFILES ]; then
+    git clone https://github.com/jmarndt/dotfiles.git $DOTFILES
 fi
 if [[ $PRETTY_NAME = *Debian* || $PRETTY_NAME = *Ubuntu* ]]; then
-    source $HOME/dotfiles/scripts/apt.sh
-    source $HOME/dotfiles/scripts/flatpak.sh
+    source $DOTFILES/scripts/apt.sh
+    source $DOTFILES/scripts/flatpak.sh
 fi
 if [[ $PRETTY_NAME = *Fedora* ]]; then
-    source $HOME/dotfiles/scripts/dnf.sh
-    source $HOME/dotfiles/scripts/flatpak.sh
+    source $DOTFILES/scripts/dnf.sh
+    source $DOTFILES/scripts/flatpak.sh
 fi
 if [[ $OSTYPE = 'darwin'* ]]; then
-    source $HOME/dotfiles/scripts/macos.sh
-    source $HOME/dotfiles/scripts/homebrew.sh
+    source $DOTFILES/scripts/macos.sh
+    source $DOTFILES/scripts/homebrew.sh
 fi
 
-source $HOME/dotfiles/scripts/ssh.sh
-source $HOME/dotfiles/scripts/git.sh
-source $HOME/dotfiles/scripts/node.sh
-source $HOME/dotfiles/scripts/link.sh
+source $DOTFILES/scripts/ssh.sh
+source $DOTFILES/scripts/git.sh
+source $DOTFILES/scripts/node.sh
+source $DOTFILES/scripts/link.sh
