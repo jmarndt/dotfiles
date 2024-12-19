@@ -19,4 +19,9 @@ sudo dnf install --skip-unavailable -y $(curl -fsSL https://raw.githubuserconten
 ```
 
 ## flatpak
-
+```bash
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
+```bash
+cat $(curl -fsSL https://raw.githubusercontent.com/jmarndt/dotfiles/master/packages/flatpak) | xargs -I{} flatpak install -y {}
+```
