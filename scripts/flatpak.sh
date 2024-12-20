@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ ! $(cat /proc/version) = *WSL* && ! $(cat /proc/version) = *microsoft* ]]; then
+if [[ ! $FLAG == "--no-flatpak" && ! $FLAG == "server" && ! $(cat /proc/version) = *WSL* && ! $(cat /proc/version) = *microsoft* ]]; then
     TITLE="INSTALLING FLATPAK PACKAGES"
     COMMAND="sudo flatpak install -y $(cat $HOME/dotfiles/packages/flatpak)"
     log_title

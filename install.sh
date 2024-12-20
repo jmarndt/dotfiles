@@ -2,6 +2,7 @@
 
 DOTFILES=$HOME/dotfiles
 INTALL_LOG=$DOTFILES/install.log
+FLAG=$1
 BANNER="
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ░░                                                                  ░░
