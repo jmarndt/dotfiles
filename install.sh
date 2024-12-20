@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOTFILES=$HOME/dotfiles
-INTALL_LOG=$DOTFILES/install.log
+INTALL_LOG=$HOME/.dotfiles_install.log
 FLAG=$1
 BANNER="
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
