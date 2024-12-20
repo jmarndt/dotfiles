@@ -24,7 +24,7 @@ log_title() {
 }
 
 printf $CLEAR_SCREEN
-echo -e "$GREEN$BANNER$RESET" && echo -e "$BANNER" > $DOTFILES/install.log
+echo -e "$GREEN$BANNER$RESET" && echo -e "$BANNER" > $INTALL_LOG
 echo -e "$BOLD""Detailed installation logs: '$INTALL_LOG'$RESET"
 [ -f /etc/os-release ] && source /etc/os-release
 
