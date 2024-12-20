@@ -29,7 +29,11 @@ echo -e "$BOLD""Detailed installation logs: '$INTALL_LOG'$RESET"
 [ -f /etc/os-release ] && source /etc/os-release
 
 if [ ! -d $DOTFILES ]; then
-    source $DOTFILES/scripts/clone.sh
+    TITLE="CLONING DOTFILES REPOSITORY"
+    COMMAND="git clone https://github.com/jmarndt/dotfiles.git $DOTFILES"
+    log_title
+
+    git clone https://github.com/jmarndt/dotfiles.git $DOTFILES &>> $INTALL_LOG
 fi
 if [[ $PRETTY_NAME = *Debian* || $PRETTY_NAME = *Ubuntu* ]]; then
     source $DOTFILES/scripts/apt.sh
