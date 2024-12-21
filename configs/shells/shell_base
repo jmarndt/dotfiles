@@ -1,0 +1,6 @@
+export LESSHISTFILE=$HOME/.lesshst
+
+source $HOME/dotfiles/configs/shells/functions
+source $HOME/dotfiles/configs/shells/aliases
+
+[[ -z "$TMUX" ]] && (tmux attach -t $(hostname) || tmux new -s $(hostname))

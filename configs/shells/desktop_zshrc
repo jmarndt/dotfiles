@@ -24,4 +24,5 @@ PROMPT+='%{$fg[red]%}]'
 PROMPT+='%{$reset_color%}$%b '
 RPROMPT='${vcs_info_msg_0_}'
 
+source $HOME/dotfiles/configs/shells/shell_base
 eval "$(direnv hook zsh)"
