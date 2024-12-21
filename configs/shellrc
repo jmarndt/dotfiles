@@ -1,12 +1,14 @@
 export LESSHISTFILE=$HOME/.lesshst
 
+source $HOME/dotfiles/dotfiles.context
+
 if [[ $SHELL = "/bin/zsh" ]]; then
-    source $HOME/dotfiles/configs/zshrc
-    export SHELLRC="$HOME/.zshrc"
+    export SYSTEM_RC="$HOME/.zshrc"
+    [[ $IS_SERVER = "false" ]] && source $HOME/dotfiles/configs/zshrc
 fi
 if [[ $SHELL = "/bin/bash" ]]; then
-    source $HOME/dotfiles/configs/bashrc
-    export SHELLRC="$HOME/.bashrc"
+    export SYSTEM_RC="$HOME/.bashrc"
+    [[ $IS_SERVER = "false" ]] && source $HOME/dotfiles/configs/bashrc
 fi
 
 source $HOME/dotfiles/configs/functions

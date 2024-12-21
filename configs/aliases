@@ -1,5 +1,5 @@
-alias src='source $SHELLRC'
-alias edt='vim $SHELLRC'
+alias src='source $SYSTEM_RC'
+alias edt='vim $SYSTEM_RC'
 alias clr='printf "\33c\e[3J"'
 alias cp='cp -iv'
 alias DS_destroy='find . -name ".DS_Store" -print -delete'
