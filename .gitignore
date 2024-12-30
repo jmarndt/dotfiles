@@ -1,4 +1,5 @@
 .DS_Store
 *.lock.json
 *.bak
-install.log
+.vscode/
+dotfiles.context

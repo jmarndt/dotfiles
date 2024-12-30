@@ -1,16 +1,22 @@
-alias src='source $SHELLRC'
-alias edt='vim $SHELLRC'
+alias src='source $SYSTEM_RC'
+alias edt='vim $SYSTEM_RC'
 alias clr='printf "\33c\e[3J"'
 alias cp='cp -iv'
 alias DS_destroy='find . -name ".DS_Store" -print -delete'
 alias mv='mv -iv'
-alias l='ls'
-alias ls='ls -lah --color=auto'
+alias l='eza -l --git'
+alias ls='eza'
+alias tree='eza -T -l --git'
+alias trees='eza -T'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias mkdir='mkdir -p'
 
-alias bat='$(if command -v batcat 2>&1 >/dev/null ; then echo batcat --color=always ; else echo echo bat --color=always ; fi)'
+[[ -x $(command -v batcat) ]] && alias bat='batcat --color=always' && alias fzf='fzf --preview="batcat --color=always {}"'
+[[ -x $(command -v bat) ]] && alias bat='bat --color=always' && alias fzf='fzf --preview="bat --color=always {}"'
+
+alias vimf='vim $(fzf)'
 
 alias pbcopy='xsel --input --clipboard'
 alias pbpaste='xsel --output --clipboard'
