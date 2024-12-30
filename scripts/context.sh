@@ -18,7 +18,7 @@ create_context() {
     [[ $PRETTY_NAME = *Fedora* ]] && PACKAGE_MANAGER="dnf" && PKG_IGNORE_FLAG="--skip-unavailable" && PKG_YES_FLAG="-y"
     [[ $OSTYPE = 'darwin'* ]] && PACKAGE_MANAGER="brew"
 
-    if [[ ! $# = 0 && !($# = 1 && $@ = *-d* || $@ = *--default*) ]]; then
+    if [[ ! $# = 0 && !($# = 1 && $@ = *-r* || $@ = *--reset*) ]]; then
         IS_SERVER=$([[ $@ = *-s* || $@ = *--server* ]] && echo "true" || echo "false")
         IS_WORK=$([[ $@ = *-w* || $@ = *--work* ]] && echo "true" || echo "false")
         INSTALL_FLATPAK=$([[ $@ = *-f* || $@ = *--flatpak* && ! $PACKAGE_MANAGER = "brew" ]] && echo "true" || echo "false")

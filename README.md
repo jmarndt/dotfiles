@@ -22,10 +22,11 @@ If any flag is passed, all present flags will be true and all absent flags will 
 ```bash
 install.sh [-s | --server] [-f | --flatpak] [-w | --work] [-S | --ssh] [-n | --node]
     -s | --server   Directs install scripts to use server specific configs.
-    -w | --work     Adds work specific system config
+    -w | --work     Adds work specific system config.
     -f | --flatpak  Will cause provided Flatpaks to be installed.
     -n | --node     Installs NVM/latest Node LTS, along with a few packages via npm.
-    -d | --default  Overrides existing context, generating new like first run
+    -S | --ssh      Generates SSH keys (~/.ssh/id_ed25519) if they don't exist.
+    -r | --reset    Ignores existing context and generates a default context.
 ```
 
 # macOS
