@@ -1,26 +1,30 @@
+# "System" aliases
 alias src='source $SYSTEM_RC'
 alias edt='vim $SYSTEM_RC'
 alias clr='printf "\33c\e[3J"'
 alias cp='cp -iv'
-alias DS_destroy='find . -name ".DS_Store" -print -delete'
 alias mv='mv -iv'
-alias l='eza -l --git'
-alias ls='eza'
-alias tree='eza -T -l --git'
-alias trees='eza -T'
-
+alias mkdir='mkdir -p'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias mkdir='mkdir -p'
+if [[ -x $(command -v eza) ]]; then
+    alias ll='eza -l --git'
+    alias ls='eza'
+    alias tree='eza -T -l --git'
+    alias trees='eza -T'
+else
+    alias ll='ls -lah --color=always'
+    alias ls='ls -ah --color=always'
+fi
+alias l='ll'
 
+# Package aliases
 [[ -x $(command -v batcat) ]] && alias bat='batcat --color=always' && alias fzf='fzf --preview="batcat --color=always {}"'
 [[ -x $(command -v bat) ]] && alias bat='bat --color=always' && alias fzf='fzf --preview="bat --color=always {}"'
-
 alias vimf='vim $(fzf)'
-
 alias pbcopy='xsel --input --clipboard'
 alias pbpaste='xsel --output --clipboard'
-
+alias DS_destroy='find . -name ".DS_Store" -print -delete'
 alias ip_pub='echo $(curl -s https://api.ipify.org)'
 alias python='python3'
 alias py='python'
@@ -31,6 +35,7 @@ alias icloud='cd ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/'
 alias cors-free-chromium-macos='open -n -a /Applications/Chromium.app/Contents/MacOS/Chromium --args --user-data-dir="/Users/joearndt/Applications/chromium-no-cors" --disable-web-security'
 alias pyserv='open "http://localhost:8000" && python3 -m http.server'
 
+# Git aliases
 alias gaa='git add --all'
 alias gb='git branch'
 alias gc='git commit -v'

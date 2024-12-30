@@ -40,8 +40,8 @@ build_pgk_queries() {
     fi
 
     if [[ $IS_WORK = "true" ]]; then
-        PKG_QUERY+="AND for_work = $IS_SERVER "
-        FLATPAK_QUERY+="AND for_work = $IS_SERVER "
+        PKG_QUERY+="AND for_work = $IS_WORK "
+        FLATPAK_QUERY+="AND for_work = $IS_WORK "
     fi
 
     PKG_QUERY+="ORDER BY name;"

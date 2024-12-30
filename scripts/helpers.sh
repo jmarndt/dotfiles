@@ -6,7 +6,9 @@ RED="\033[91m"
 GREEN="\033[92m"
 
 # Formatting
-DELIMITER="----------------------------------------------------------------------"
+DELIMITER="" && for i in {1..70}; do
+    DELIMITER+="-"
+done
 
 # Default context
 IS_SERVER="false"
@@ -16,8 +18,11 @@ INSTALL_SSH_KEYS="true"
 INSTALL_NODE="true"
 
 install_apt_packages() {
-    sudo apt install -y sqlite3 &>> $DOTFILES_LOG
-    sudo apt install --ignore-missing -y $(sqlite3 -init /dev/null -batch $DOTFILES_DB "$PKG_QUERY") &>> $DOTFILES_LOG
+    sudo apt-get install -y sqlite3 &>> $DOTFILES_LOG
+    for pkg in $(sqlite3 -init /dev/null -batch $DOTFILES_DB "$PKG_QUERY"); do
+        log file "Installing \"$pkg\"..."
+        sudo apt-get install -y $pkg &>> $DOTFILES_LOG
+    done
 }
 
 install_dnf_packages() {
