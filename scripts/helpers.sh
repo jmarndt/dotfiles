@@ -32,7 +32,7 @@ install_dnf_packages() {
 
 install_homebrew_packages() {
     TEMP_BREW_FILE=$DOTFILES_DIR/brew.tmp
-    echo "tap \"homebrew/bundle\"\ntap \"homebrew/cask\"\ntap \"homebrew/core\"" > $TEMP_BREW_FILE
+    echo "tap \"homebrew/bundle\"\ntap \"homebrew/cask\"\ntap \"homebrew/core\"tap \"deskflow/homebrew-tap\"" > $TEMP_BREW_FILE
     if test ! $(which brew); then
         NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &>> $DOTFILES_LOG
     fi
