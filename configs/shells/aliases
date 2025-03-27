@@ -8,15 +8,16 @@ alias mkdir='mkdir -p'
 alias ..='cd ..'
 alias ...='cd ../..'
 if [[ -x $(command -v eza) ]]; then
-    alias ll='eza -l --git'
+    alias l='eza -l'
+    alias ll='eza -lah --git'
     alias ls='eza'
     alias tree='eza -T -l --git'
     alias trees='eza -T'
 else
+    alias l='ls'
     alias ll='ls -lah --color=always'
     alias ls='ls -ah --color=always'
 fi
-alias l='ll'
 
 # Package aliases
 [[ -x $(command -v batcat) ]] && alias bat='batcat --color=always' && alias fzf='fzf --preview="batcat --color=always {}"'
